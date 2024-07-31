@@ -1,2 +1,2 @@
-##hosted @
+## hosted @
 # https://Jeremiahwarinner.github.io
