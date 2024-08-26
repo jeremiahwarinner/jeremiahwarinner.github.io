@@ -1,2 +1,3 @@
 ## hosted @
-# https://Jeremiahwarinner.github.io
+# jeremiahwarinner.com
+
