@@ -28,11 +28,9 @@ def get_post(post_id):
 def make_posts():
     post_name = request.json.get("postName")
     post_content = request.json.get("postContent")
-    hot_like_count = 0
-    cold_like_count = 0
     if not post_name or not post_content :
         return (jsonify({"message": "You must include a post name and post content"}), 400)
-    new_post = PostData(post_name = post_name, post_content = post_content,hot_like_count = hot_like_count, cold_like_count = cold_like_count)
+    new_post = PostData(post_name = post_name, post_content = post_content)
     try: 
         db.session.add(new_post)
         db.session.commit()
@@ -47,8 +45,6 @@ def update_posts(post_id):
     if not post:
         return jsonify({"message": "post not found"}), 404
     data = request.json 
-    post.hot_like_count = data.get("hotLikeCount", PostData.hot_like_count)
-    post.cold_like_count = data.get("coldLikeCount", PostData.cold_like_count)
     post.post_name = data.get("postName", PostData.post_name)
     post.post_content = data.get("postContent", PostData.post_content)
     db.session.commit()
