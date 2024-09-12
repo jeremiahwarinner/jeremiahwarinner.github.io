@@ -1,3 +1,0 @@
-## hosted @
-# jeremiahwarinner.com
-
