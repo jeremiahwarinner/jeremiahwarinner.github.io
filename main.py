@@ -2,9 +2,25 @@ from flask import request, jsonify
 from config import app, db 
 from models import PostData 
 from flask_cors import cross_origin
+from functools import wraps
+import os
+API_KEY = os.getenv('API_KEY')
+
+def require_api_key(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        api_key = request.headers.get("x-api-key")
+        if api_key and api_key == API_KEY:
+            return f(*args, **kwargs)
+        else:
+            return jsonify({"message": "Invalid or missing API key"}), 403
+    return decorated_function
+
+
 
 @app.route("/get_posts",methods=["GET"])
 @cross_origin()
+@require_api_key
 def get_posts():
     posts = PostData.query.all()
     json_posts = list(map(lambda x: x.to_json(), posts))
@@ -12,6 +28,7 @@ def get_posts():
 
 @app.route("/get_post/<int:post_id>", methods=["GET"])
 @cross_origin()
+@require_api_key
 def get_post(post_id):
     post = PostData.query.get(post_id)
     if post is None:
@@ -25,6 +42,7 @@ def get_post(post_id):
 
 @app.route("/make_posts",methods=["POST"])
 @cross_origin()
+@require_api_key
 def make_posts():
     post_name = request.json.get("postName")
     post_content = request.json.get("postContent")
@@ -40,6 +58,7 @@ def make_posts():
 
 @app.route("/update_posts/<int:post_id>", methods=["PATCH"])
 @cross_origin()
+@require_api_key
 def update_posts(post_id):
     post = PostData.query.get(post_id)
     if not post:
@@ -52,6 +71,7 @@ def update_posts(post_id):
 
 @app.route("/delete_post/<int:post_id>", methods=["DELETE"])
 @cross_origin()
+@require_api_key
 def delete_post(post_id):
     post = PostData.query.get(post_id)
     if not post: 
