@@ -5,6 +5,7 @@ import Login from './components/Login';
 import AdminPage from './components/AdminPage';
 import PostPage from './components/PostPage';
 import Footer from './components/footer'; 
+import { Analytics } from "@vercel/analytics/react"
 
 const globalStyles = `
   body {
@@ -29,7 +30,9 @@ const App = () => {
   };
 
   return (
+
     <Router>
+      <Analytics/>
       <style>{globalStyles}</style>
       <div className="min-h-screen bg-gray-900 text-gray-300 flex flex-col">
         <div className="flex-grow">

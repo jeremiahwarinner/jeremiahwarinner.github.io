@@ -83,7 +83,7 @@ const AboutGrid = ({ aboutMe, openAboutModal }) => {
                   <li><strong className="text-purple-300">Programming:</strong> Python, Kotlin, SQL, HTML, CSS, JavaScript, GraphQL, PromQL, Yaml</li>
                   <li><strong className="text-purple-300">Packages:</strong> Flask, Pandas, Dash, Numpy, React, Next.js</li>
                   <li><strong className="text-purple-300">OS:</strong> Linux, Windows</li>
-                  <li><strong className="text-purple-300">Tools:</strong> Github, Tableau, Excel, MySQL, Graphana, Prometheus, Kubernetes, Jenkins</li>
+                  <li><strong className="text-purple-300">Tools:</strong> Github, Tableau, Excel, MySQL, Grafana, Prometheus, Kubernetes, Jenkins</li>
                 </ul>
               )}
 
